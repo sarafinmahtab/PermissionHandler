@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/permissionSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/permissionClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Get Permission"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/permissionSpinner"
+        app:layout_constraintStart_toStartOf="@+id/permissionSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/permissionSpinner" />
+
+    <TextView
+        android:id="@+id/permissionStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Status"
+        app:layout_constraintEnd_toEndOf="@+id/permissionClick"
+        app:layout_constraintStart_toStartOf="@+id/permissionClick"
+        app:layout_constraintTop_toBottomOf="@+id/permissionClick" />
+
+    <Switch
+        android:id="@+id/useDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use Explanation Dialog"
+        app:layout_constraintBottom_toTopOf="@+id/clearPermission"
+        app:layout_constraintEnd_toEndOf="@+id/permissionStatus"
+        app:layout_constraintStart_toStartOf="@+id/permissionStatus"
+        app:layout_constraintTop_toBottomOf="@+id/permissionStatus" />
+
+    <Button
+        android:id="@+id/clearPermission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Clear Permission"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
