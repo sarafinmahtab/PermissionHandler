@@ -1,4 +1,4 @@
-package com.sam.permissionapp
+package com.sarafinmahtab.permissionapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

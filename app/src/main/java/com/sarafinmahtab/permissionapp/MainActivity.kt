@@ -1,4 +1,4 @@
-package com.sam.permissionapp
+package com.sarafinmahtab.permissionapp
 
 import android.content.Context
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import com.sam.permissionhandler.PermissionHandler
+import com.sarafinmahtab.permissionmanager.PermissionManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private val permissionMap = HashMap<String, Array<String>>()
 
-    private lateinit var permissionHandler: PermissionHandler
+    private lateinit var permissionManager: PermissionManager
     private lateinit var selectedPermissions: Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        permissionHandler = PermissionHandler(this)
+        permissionManager = PermissionManager(this)
 
         permissionMap["CAMERA,STORAGE,CONTACT,LOCATION"] = arrayOf(
             android.Manifest.permission.CAMERA,
@@ -70,13 +70,13 @@ class MainActivity : AppCompatActivity() {
 
         permissionClick.setOnClickListener {
             if (useDialogCheck) {
-                permissionHandler.setPermissionExplanationDialog(
+                permissionManager.setPermissionExplanationDialog(
                     title = "Permission Need",
                     message = "Please accept permission"
                 )
             }
 
-            permissionHandler.checkForPermission(
+            permissionManager.checkForPermission(
                 REQUEST_PERMISSION,
                 selectedPermissions
             )
@@ -85,10 +85,10 @@ class MainActivity : AppCompatActivity() {
         permissionCheckClick.setOnClickListener {
 
             updatePermissionStatus(
-                "Camera Permission -> ${permissionHandler.hasPermission(android.Manifest.permission.CAMERA)}\n" +
-                        "Storage Permission -> ${permissionHandler.hasPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)}\n" +
-                        "Location Permission -> ${permissionHandler.hasPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)}\n" +
-                        "Read Contacts Permission -> ${permissionHandler.hasPermission(android.Manifest.permission.READ_CONTACTS)}\n"
+                "Camera Permission -> ${permissionManager.hasPermission(android.Manifest.permission.CAMERA)}\n" +
+                        "Storage Permission -> ${permissionManager.hasPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)}\n" +
+                        "Location Permission -> ${permissionManager.hasPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)}\n" +
+                        "Read Contacts Permission -> ${permissionManager.hasPermission(android.Manifest.permission.READ_CONTACTS)}\n"
             )
         }
 
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == REQUEST_PERMISSION) {
-            if (permissionHandler.allPermissionGranted(grantResults)) {
+            if (permissionManager.allPermissionGranted(grantResults)) {
                 updatePermissionStatus("Granted Permissions")
             } else {
                 updatePermissionStatus("Cancelled Permissions")

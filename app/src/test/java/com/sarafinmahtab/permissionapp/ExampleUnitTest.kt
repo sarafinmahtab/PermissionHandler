@@ -1,4 +1,4 @@
-package com.sam.permissionapp
+package com.sarafinmahtab.permissionapp
 
 import org.junit.Test
 

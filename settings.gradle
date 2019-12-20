@@ -1,2 +1,2 @@
-include ':app', ':permissionhandler'
-rootProject.name='PermissionHandler'
+include ':app', ':permissionmanager'
+rootProject.name='PermissionManager'
