@@ -6,53 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Switch
+        android:id="@+id/useDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:switchPadding="8dp"
+        android:text="Use Explanation Dialog"
+        app:layout_constraintBottom_toTopOf="@+id/guideLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/permissionSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideLine" />
 
-    <Button
-        android:id="@+id/permissionClick"
+    <LinearLayout
+        android:id="@+id/permissionHandler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Get Permission"
-        android:textAllCaps="false"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/permissionSpinner"
         app:layout_constraintStart_toStartOf="@+id/permissionSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/permissionSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/permissionSpinner">
+
+        <Button
+            android:id="@+id/permissionClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Get Permission"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/permissionCheckClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Check Permission"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/permissionStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No Status"
-        app:layout_constraintEnd_toEndOf="@+id/permissionClick"
-        app:layout_constraintStart_toStartOf="@+id/permissionClick"
-        app:layout_constraintTop_toBottomOf="@+id/permissionClick" />
-
-    <Switch
-        android:id="@+id/useDialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Use Explanation Dialog"
-        app:layout_constraintBottom_toTopOf="@+id/clearPermission"
-        app:layout_constraintEnd_toEndOf="@+id/permissionStatus"
-        app:layout_constraintStart_toStartOf="@+id/permissionStatus"
-        app:layout_constraintTop_toBottomOf="@+id/permissionStatus" />
-
-    <Button
-        android:id="@+id/clearPermission"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Clear Permission"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/permissionHandler"
+        app:layout_constraintStart_toStartOf="@+id/permissionHandler"
+        app:layout_constraintTop_toBottomOf="@+id/permissionHandler" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

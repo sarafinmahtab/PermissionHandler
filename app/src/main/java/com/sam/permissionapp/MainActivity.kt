@@ -42,12 +42,10 @@ class MainActivity : AppCompatActivity() {
             android.Manifest.permission.CAMERA,
             android.Manifest.permission.ACCESS_FINE_LOCATION
         )
-        permissionMap["CAMERA,STORAGE,CONTACT"] = arrayOf(
-            android.Manifest.permission.CAMERA,
+        permissionMap["STORAGE,CONTACT"] = arrayOf(
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_CONTACTS
         )
-
 
         useDialog.isChecked = useDialogCheck
 
@@ -83,6 +81,18 @@ class MainActivity : AppCompatActivity() {
                 selectedPermissions
             )
         }
+
+        permissionCheckClick.setOnClickListener {
+
+            updatePermissionStatus(
+                "Camera Permission -> ${permissionHandler.hasPermission(android.Manifest.permission.CAMERA)}\n" +
+                        "Storage Permission -> ${permissionHandler.hasPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)}\n" +
+                        "Location Permission -> ${permissionHandler.hasPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)}\n" +
+                        "Read Contacts Permission -> ${permissionHandler.hasPermission(android.Manifest.permission.READ_CONTACTS)}\n"
+            )
+        }
+
+        permissionCheckClick.performClick()
     }
 
     override fun onRequestPermissionsResult(
@@ -95,11 +105,15 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == REQUEST_PERMISSION) {
             if (permissionHandler.allPermissionGranted(grantResults)) {
-                permissionStatus.text = "Granted Permission"
+                updatePermissionStatus("Granted Permissions")
             } else {
-                permissionStatus.text = "Cancelled Permission"
+                updatePermissionStatus("Cancelled Permissions")
             }
         }
+    }
+
+    private fun updatePermissionStatus(status: String) {
+        permissionStatus.text = status
     }
 }
 
